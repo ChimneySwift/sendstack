@@ -1,0 +1,1 @@
+Adds a command to send the stack you are holding to another player (requires ban priv)
