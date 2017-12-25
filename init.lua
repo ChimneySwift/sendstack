@@ -1,7 +1,7 @@
 minetest.register_chatcommand("sendstack", {
     params = "<player>",
     description = "Send the item you are currently holding to the receiver's inventory.",
-    privs = {ban = true,}
+    privs = {ban = true,},
     func = function(name, param)
         local sender = minetest.get_player_by_name(name)
         local receiver = minetest.get_player_by_name(param)
