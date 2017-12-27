@@ -1,7 +1,12 @@
+-- Set this to "true" to require an additional priv (as well as interact) (default: false)
+use_priv = true
+-- Set this to the additional priv (default: ban)
+priv = "ban"
+
 minetest.register_chatcommand("sendstack", {
     params = "<player>",
+    privs = {interact = true},
     description = "Send the item you are currently holding to the receiver's inventory.",
-    -- privs = {ban = true,},
     func = function(name, param)
         local sender = minetest.get_player_by_name(name)
         local receiver = minetest.get_player_by_name(param)
@@ -37,3 +42,9 @@ minetest.register_chatcommand("sendstack", {
         return true, ("%q %ssent to %s."):format(stackstring, partiality, param)
     end,
 })
+
+if use_priv then
+    minetest.override_chatcommand("sendstack", {
+        privs = {[priv] = true, interact = true},
+    })
+end
